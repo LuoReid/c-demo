@@ -33,16 +33,23 @@ int main()
     result = addtwonum();
     printf("result is: %d \n", result);
 
-    printf("address of MAX_VALUE : \n");
-    // printf((char)&MAX_VALUE);
+    printf("address of MAX_VALUE : %p \n", &MAX_VALUE);
     int g = 33;
     printf("\ng: %d \n", g);
 
+    // TODO: detail of Array;
     double balance[] = {10, 9, 8, 7, 6, 11.0};
     printf("balance %lu", sizeof(balance) / sizeof(balance[0]));
 
     enum Day day = Wed;
     printf("enum Day : %d %d \n", day, (enum Day)5);
+
+    // TODO: detail of pointer;
+    int *p;
+    p = &g;
+    printf("g value address: %p \n", &g);
+    printf("p address: %p \n", p);
+    printf("p value : %d \n", *p);
 
     return 0;
 }
