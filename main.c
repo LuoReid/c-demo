@@ -77,5 +77,21 @@ int main()
         printf("%d ", myarray[i]);
     }
     printf("\n");
+
+    char site[7] = {'R', 'U', 'N', 'O', 'O', 'B', '\0'};
+    printf("site: %s \n", site);
+
+    struct Book
+    {
+        char title[50];
+        char author[50];
+        char subject[100];
+        int id;
+    };
+    struct Book book1 = {"C lang", "Runoob", "program lang", 1};
+    printf("{title:%s,author:%s,subject:%s,id:%d} sizeof: %zu\n",
+           book1.title, book1.author, book1.subject, book1.id,
+           sizeof(book1));
+
     return 0;
 }
