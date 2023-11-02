@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <float.h>
+#include <stdlib.h>
 
-int x = 2;
-int y = 2;
+int x = 200;
+int y = 22;
 int addtwonum();
 const int MAX_VALUE = 100;
 int g = 20;
@@ -17,6 +18,18 @@ enum Day
     Sat,
     Sun
 };
+
+int max(int x, int y) { return x > y ? x : y; }
+
+void pop_array(int *array, size_t arraySize, int (*getNextValue)(void))
+{
+    for (size_t i = 0; i < arraySize; i++)
+        array[i] = getNextValue();
+}
+int getNextRandomValue(void)
+{
+    return rand();
+}
 
 int main()
 {
@@ -51,5 +64,18 @@ int main()
     printf("p address: %p \n", p);
     printf("p value : %d \n", *p);
 
+    // function pointer
+    int (*pf)(int, int) = &max;
+    int d = pf(pf(x, y), g);
+    printf("x: %d, y: %d, g: %d, max: %d \n", x, y, g, d);
+
+    // callback pointer
+    int myarray[10];
+    pop_array(myarray, 10, getNextRandomValue);
+    for (int i = 0; i < 10; i++)
+    {
+        printf("%d ", myarray[i]);
+    }
+    printf("\n");
     return 0;
 }
