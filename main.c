@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <float.h>
 #include <stdlib.h>
+#include <string.h>
 
 int x = 200;
 int y = 22;
@@ -30,6 +31,12 @@ int getNextRandomValue(void)
 {
     return rand();
 }
+union Data
+{
+    int i;
+    float f;
+    char str[20];
+};
 
 int main()
 {
@@ -93,5 +100,11 @@ int main()
            book1.title, book1.author, book1.subject, book1.id,
            sizeof(book1));
 
+    union Data data;
+    printf("union data size: %d \n", sizeof(data));
+    data.i = 100;
+    data.f = 101.00;
+    strcpy(data.str, "This is C programming");
+    printf("union data: %d, %f, %s \n", data.i, data.f, data.str);
     return 0;
 }
