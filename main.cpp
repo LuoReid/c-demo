@@ -26,6 +26,8 @@ int max(int x, int y);
 void getSeconds(unsigned long *par);
 void swap(int &x, int &y);
 
+void iodemo(void);
+
 int main()
 {
     cout << "Hello, C++!" << endl;
@@ -223,8 +225,24 @@ int main()
     cout << "year: " << 1900 + ltm->tm_year << endl;
     cout << "month:" << 1 + ltm->tm_mon << endl;
     cout << "day:" << ltm->tm_mday << endl;
-    cout << "time: " << ltm->tm_hour << ":" << ltm->tm_min << ":" << ltm->tm_sec << endl;
+    cout << "time: " << ltm->tm_hour << ":" << ltm->tm_min << ":" << ltm->tm_sec << endl
+         << endl;
+
+    // io
+    iodemo();
+
     return 0;
+}
+void iodemo()
+{
+    char name[50];
+    cout << "please input your name: ";
+    cin >> name;
+    cout << "your name is: " << name << endl;
+
+    char str[] = "Unable to read...";
+    cerr << "Error message: " << str << endl;
+    clog << "Info message: " << str << endl;
 }
 void swap(int &x, int &y)
 {
