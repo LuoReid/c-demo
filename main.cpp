@@ -24,6 +24,7 @@ extern void write_extern();
 
 int max(int x, int y);
 void getSeconds(unsigned long *par);
+void swap(int &x, int &y);
 
 int main()
 {
@@ -117,7 +118,7 @@ int main()
     i = 1000;
     long l = 10000000;
     f = 230.2;
-    long double d = 20984.4566;
+    double d = 20984.4566;
     cout << "short  s is :" << s << endl;
     cout << "int    i is :" << i << endl;
     cout << "long   l is :" << l << endl;
@@ -192,7 +193,30 @@ int main()
     getSeconds(&sec);
     cout << "seconds: " << sec << endl;
 
+    // reference
+    int &ri = x;
+    double &rd = d;
+    cout << "i is: " << x << " ri is: " << ri << endl;
+    cout << "d is: " << d << " rd is: " << rd << endl;
+    x = 101;
+    d = 10.10;
+    ri = 11;
+    rd = 11.22;
+    cout << "i is: " << x << " ri is: " << ri << endl;
+    cout << "d is: " << d << " rd is: " << rd << endl;
+
+    cout << "(x,y) is: " << x << "," << y << endl;
+    swap(x, y);
+    cout << "(x,y) is: " << x << "," << y << endl;
+
     return 0;
+}
+void swap(int &x, int &y)
+{
+    int temp = x;
+    x = y;
+    y = temp;
+    return;
 }
 
 void getSeconds(unsigned long *par)
