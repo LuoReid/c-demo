@@ -24,3 +24,4 @@ fi
 # pich commit to edit then save exit
 # git commit --amend --author="name <name@email>" --no-edit
 # git rebase --continue
+# 70c9898,21066cc
