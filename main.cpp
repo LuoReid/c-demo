@@ -187,7 +187,8 @@ int main()
     pptr = &ptr;
     cout << "count is:" << count;
     cout << "*ptr is:" << *ptr;
-    cout << "**pptr is:" << **pptr << endl;
+    cout << "**pptr is:" << **pptr << endl
+         << endl;
 
     unsigned long sec;
     getSeconds(&sec);
@@ -207,8 +208,22 @@ int main()
 
     cout << "(x,y) is: " << x << "," << y << endl;
     swap(x, y);
-    cout << "(x,y) is: " << x << "," << y << endl;
+    cout << "(x,y) is: " << x << "," << y << endl
+         << endl;
 
+    // date and time
+    time_t now = time(0);
+    char *dt = ctime(&now);
+    tm *ltm = localtime(&now);
+    cout << "local datetime: " << dt << endl;
+    tm *gmtm = gmtime(&now);
+    dt = asctime(gmtm);
+    cout << "UTC datetime: " << dt << endl;
+    cout << "seconds from 1970: " << now << endl;
+    cout << "year: " << 1900 + ltm->tm_year << endl;
+    cout << "month:" << 1 + ltm->tm_mon << endl;
+    cout << "day:" << ltm->tm_mday << endl;
+    cout << "time: " << ltm->tm_hour << ":" << ltm->tm_min << ":" << ltm->tm_sec << endl;
     return 0;
 }
 void swap(int &x, int &y)
