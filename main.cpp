@@ -28,6 +28,18 @@ void swap(int &x, int &y);
 
 void iodemo(void);
 
+struct Book
+{
+    char title[50];
+    char author[50];
+    char subject[100];
+    int book_id;
+};
+
+void printBook(Book b);
+void pirntBook(struct Boook *b);
+void structdemo(void);
+
 int main()
 {
     cout << "Hello, C++!" << endl;
@@ -229,10 +241,52 @@ int main()
          << endl;
 
     // io
-    iodemo();
+    // iodemo();
+
+    // struct
+    structdemo();
 
     return 0;
 }
+
+void printBook(Book b)
+{
+    cout << "title:" << b.title << endl;
+    cout << "author:" << b.author << endl;
+    cout << "subject:" << b.subject << endl;
+    cout << "id:" << b.book_id << endl;
+};
+void printBook(struct Book *b)
+{
+    cout << "title:" << b->title << endl;
+    cout << "author:" << b->author << endl;
+    cout << "subject:" << b->subject << endl;
+    cout << "id:" << b->book_id << endl;
+};
+
+void structdemo()
+{
+    Book b1;
+    Book b2;
+    strcpy(b1.title, "C++");
+    strcpy(b1.author, "Runoob");
+    strcpy(b1.subject, "Programming language");
+    b1.book_id = 101;
+
+    strcpy(b2.title, "CSS");
+    strcpy(b2.author, "Runoob");
+    strcpy(b2.subject, "font-end tech");
+    b2.book_id = 202;
+
+    printBook(b1);
+    // printBook(b2);
+
+    struct Book *bp;
+    bp = &b1;
+    // printBook(bp);
+    printBook(&b2);
+}
+
 void iodemo()
 {
     char name[50];
