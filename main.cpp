@@ -40,6 +40,97 @@ void printBook(Book b);
 void pirntBook(struct Boook *b);
 void structdemo(void);
 
+class Box
+{
+private:
+    double length;
+    int *ptr;
+
+public:
+    // double length;  // long
+    static int objCount;
+    double breadth; // width
+    double height;  // hight
+    double get(void);
+    void set(double len, double bre, double hei);
+    double getVolume(void)
+    {
+        return length * breadth * height;
+    }
+    void setValue(double len, double bre, double hei)
+    {
+        length = len;
+        breadth = bre;
+        height = hei;
+        *ptr = (int)len;
+    }
+    void setLength(double len)
+    {
+        this->length = len;
+        *ptr = (int)len;
+    }
+    double getLength()
+    {
+        return length;
+    }
+    void printLength() { cout << "Length: " << this->length << endl; }
+    double getSize()
+    {
+        return *ptr;
+    }
+    friend void printLength(Box b);
+    Box(double len, double bre, double hei)
+    {
+        cout << "Constructor(x,y,z) called" << endl;
+        length = len;
+        breadth = bre;
+        height = hei;
+        ptr = new int;
+        *ptr = (int)len;
+        objCount++;
+    }
+    Box(const Box &b)
+    {
+        objCount++;
+        cout << "Constructor(&b) called:ptr" << endl;
+        ptr = new int;
+        *ptr = *b.ptr; // copy value
+    }
+    Box();
+    ~Box()
+    {
+        cout << "Object is being deleted" << endl;
+        delete ptr;
+    }
+};
+Box ::Box(void)
+{
+    cout << "Constructor() called" << endl;
+    ptr = new int;
+    *ptr = length;
+    objCount++;
+}
+double Box::get(void)
+{
+    return length * breadth * height;
+}
+void Box::set(double len, double bre, double hei)
+{
+    length = len;
+    breadth = bre;
+    height = hei;
+    *ptr = (int)len;
+}
+void printLength(Box b)
+{
+    cout << "Length of frind box: " << b.length << endl;
+}
+void display(Box b)
+{
+    cout << "box size: " << b.getSize() << endl;
+}
+void boxDemo();
+
 int main()
 {
     cout << "Hello, C++!" << endl;
@@ -246,6 +337,10 @@ int main()
     // struct
     structdemo();
 
+    cout << endl
+         << "box demo" << endl;
+    boxDemo();
+
     return 0;
 }
 
@@ -285,6 +380,56 @@ void structdemo()
     bp = &b1;
     // printBook(bp);
     printBook(&b2);
+}
+
+int Box::objCount = 0;
+void boxDemo()
+{
+    cout << "Total objects: " << Box::objCount << endl;
+    Box b1;
+    Box b2;
+    Box b3;
+    Box b4(3.0, 4.0, 5.0);
+    Box b5 = b4;
+
+    double volume = 0.0;
+
+    b1.height = 5.0;
+    b1.setLength(6.0);
+    b1.breadth = 7.0;
+
+    b2.set(6.0, 5.0, 4.0);
+    b3.setValue(7.0, 8.0, 9.0);
+
+    volume = b1.breadth * b1.getLength() * b1.breadth;
+    cout << "Box1 volume: " << volume << endl;
+    volume = b2.get();
+    cout << "Box2 volume: " << volume << endl;
+    volume = b3.getVolume();
+    cout << "Box3 volume: " << volume << endl;
+    volume = b4.getVolume();
+    cout << "Box4 volume: " << volume << endl;
+    display(b1);
+    display(b2);
+    display(b3);
+    display(b4);
+    display(b5);
+
+    b5.setLength(111);
+    printLength(b5);
+    b5.printLength();
+
+    cout << "Total objects: " << Box::objCount << endl;
+
+    Box *ptrBox;
+    ptrBox = &b4;
+    cout << "Total objects: " << Box::objCount << endl;
+
+    cout << "Volume b6 is b4: " << ptrBox->getVolume() << endl;
+    ptrBox = &b2;
+    cout << "Volume b6 is b2: " << ptrBox->getVolume() << endl;
+
+    cout << "Total objects: " << Box::objCount << endl;
 }
 
 void iodemo()
