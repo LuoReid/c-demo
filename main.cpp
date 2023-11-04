@@ -131,6 +131,7 @@ void display(Box b)
 }
 void boxDemo();
 
+
 int main()
 {
     cout << "Hello, C++!" << endl;
@@ -340,6 +341,8 @@ int main()
     cout << endl
          << "box demo" << endl;
     boxDemo();
+
+    // TODO: operator overload
 
     return 0;
 }
